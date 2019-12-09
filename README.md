@@ -199,38 +199,53 @@ While performing the analysis remember that we want to establish a fair value fo
 
 (1) Confounders that you could have missed?
 
+* See the archive links if the original links stop working.
 
 (a) Overprediction:
 
-__18039__ 
-
-https://www.airbnb.com/rooms/21743681
+[18039](https://www.airbnb.com/rooms/21743681) ([Archive](http://archive.today/BR1ss))
 
 This instance shows immediate red flags, there is no dates available into the future and the price is really low. It is like offering a product at a very low price but not having stock. These type of locations should not be included in the data set and should be removed. I would remove all homes at a hard limit of say $15 and less with no availbility for the next two months and less than two reviews.
 
-__32657__
-
-https://www.airbnb.com/rooms/21884828
+[32657](https://www.airbnb.com/rooms/21884828) ([Archive](http://archive.today/dIyVM))
 
 This host realised her error and she has respectively adjusted her price from [$20](https://github.com/firmai/FFOOD/blob/master/raw/Over.csv) to $50 within two months. But even still, $50 is rediculously low for a prediction of (20 x 600% = $120). She has a cleaning fee of $70, but the model should have picked this up. The cleaning fee is a FLO (an overpredicting feature) so we might want to give it some attention in the future. I would create one additional feature which is the price + cleaning fee, but other than that, this is just a good deal. This could set the baseline for identifying a deal vs an error. Overprrediction of 50/20 ~ we will conservatively say 3, should be removed.
 
-__18416__
-
-https://www.airbnb.com/rooms/21743681
+[18416](https://www.airbnb.com/rooms/21743681) ([Archive](http://archive.today/3I9GP))
 
 This again just looks like an amazing deal. Although the reviewer are fairly highly rated at 3.75, there seems to be an issue with cancellations as per the reviews. This might be a contributing factor to him having to offer a low price to attract clients as this is a great cause of uncertainty to holiday plans. To fix the miss prediction issue, I would count the number of reviews with 'cancel' occuring in the text.
 
-__32731__
-
-https://www.airbnb.com/rooms/33861409
+[32731](https://www.airbnb.com/rooms/33861409) ([Archive](http://archive.today/EPLdO))
 
 This price changed from $15 to almost $150, as a result, it is likely to be a mistake. Howeverm this change of price is not somethign you would have known at the time of creating the model. The 3 times overvaluation rule established in __32657__ would take care of this mistake of 4.3 times overvaluation. 
 
-__27078__
-
-https://www.airbnb.com/rooms/33912597
+[27078](https://www.airbnb.com/rooms/33912597) ([Archive](http://archive.today/IeHQ9))
 
 Again a mistake, was listed as $20, now listed as $200. The 3 times overvaluation rule established in __32657__ would take care of this mistake
+
+(a) Underprediction:
+
+[33057](https://www.airbnb.com/rooms/26932284)
+
+The price of this room is extremely high at $937. The price has dropped a bit from the $1,251 it was originally. Prices seem to be quite dynamic first of all. It seems like season has to be taken into account. When presenting our client with a valuation, it would be necessary to have a database of the prices scraped in every month of the year. 
+
+You would expect to see this price luxury hotels. People here seem to be paying for the 'penthouse experience'. It is worth considering that a large amount of availble days and no reviews could be indicative of both bad lodging and a high price. Because hotels are so different to traditional Airbnbs all hotels can be thrown out. If that is too extreme, then one can instead scan the text for 'Penthouse' and add that as a feature.
+
+
+[30218](https://www.airbnb.com/rooms/26932284)
+
+This entry has dissapeared, clearly a mistake or testament to a too overvalued price leading to no lodgers, we can have a look at the [raw data](https://github.com/firmai/ffood/blob/master/raw/Under.csv) to see why. At some point we therefore have to establish a cut off. 
+
+
+[30218](https://www.airbnb.com/rooms/26932284)
+
+Also dissapeared.
+
+[30218](https://www.airbnb.com/rooms/26932284)
+
+Although this price is high, it is justified nased on the fact that it is see facing. There is very few homes in this region that are on airbnb so the comparable prices could not be established. A new feature distance to ocean is recommended. This room was extremely overpriced at $1200 for a room in a house. The host has since dropped the price to $78. For these outliers, a threshold at 3 times underprediction will also be established. 
+
+
 
 #### Number of Reviews
 
@@ -238,7 +253,7 @@ Again a mistake, was listed as $20, now listed as $200. The 3 times overvaluatio
 
 (a) Overprediction (
 
-__15082__ 
+[15082__ 
 https://www.airbnb.com/rooms/21743681
 
 This instance shows immediate red flags, there is no dates available into the future and the price is really low. It is like offering a product at a very low price but not having stock. These type of locations should not be included in the data set and should be removed. I would remove all homes at a hard limit of say $15 and less with no availbility for the next two months and less than two reviews.
