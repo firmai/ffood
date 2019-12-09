@@ -1,0 +1,9 @@
+README.md
+setup.py
+ffood/__init__.py
+ffood.egg-info/PKG-INFO
+ffood.egg-info/SOURCES.txt
+ffood.egg-info/dependency_links.txt
+ffood.egg-info/not-zip-safe
+ffood.egg-info/requires.txt
+ffood.egg-info/top_level.txt

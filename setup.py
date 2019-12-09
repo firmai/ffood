@@ -8,4 +8,11 @@ setup(name='ffood',
       author_email='d.snow@firmai.org',
       license='MIT',
       packages=['ffood'],
+      install_requires=[
+          'pandas',
+          'numpy',
+          'lightgbm',
+          'pandas',
+          'shap'
+      ],
       zip_safe=False)
