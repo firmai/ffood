@@ -71,6 +71,7 @@ Welcome to Airbnb Analysis Corp.! Your task is to set the competitive ****daily 
 
     clean_data = your_cleaning_operations(raw_data)
 
+<br />
 
 ### Start Here
 
@@ -114,9 +115,11 @@ The next is the same table but for the average reviewer rating. All feature are 
 
 
 
-*From here forward, I will focus on the price feature as target. *
+*From here forward, I will focus on the price feature as target.*
 
-Raw Data
+<br />
+
+**Raw Data**
 
 
 | Overprediction Instances              | Underprediction Instances             |
@@ -126,6 +129,16 @@ Raw Data
 | https://www.airbnb.com/rooms/29807040 | https://www.airbnb.com/rooms/31601306 |
 | https://www.airbnb.com/rooms/33861409 | https://www.airbnb.com/rooms/32384612 |
 | https://www.airbnb.com/rooms/33912597 | https://www.airbnb.com/rooms/34231022 |
+
+| Overprediction Instances Archive              | Underprediction Instances Archive             |
+| ------------------------------------- | ------------------------------------- |
+| http://archive.today/BR1ss | http://archive.today/i2AjM |
+| http://archive.today/dIyVM | http://archive.today/ttcqI |
+| http://archive.today/3I9GP | http://archive.today/uc8m3 |
+| http://archive.today/EPLdO | http://archive.today/EDKtZ |
+| http://archive.today/IeHQ9 | http://archive.today/SclC0 |
+
+
 
 There is a lot of other raw data that can be found here for the [overpredicted](https://github.com/firmai/FFOOD/blob/master/raw/Over.csv) and [underpredicted](https://github.com/firmai/FFOOD/blob/master/raw/Under.csv) instances. 
 
