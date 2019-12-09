@@ -17,11 +17,11 @@ outliers, features = tb(clean_data)
 pip install ffood
 ```
 
-FFOOD is a unique method to audit potential model inputs. It is designed to help you identify whether you might need additional variables and whether you have mistakes or outliers in your datasets. Note, it is a very slow algorithm, with the number of models being trained equaling 30 times the Number of Features. 
+FFOOD is a unique method to audit potential model inputs. It is designed to help you identify whether you might need additional variables and whether you have mistakes or outliers in your datasets. It is a unique outlier model because it investigates the prediction outlier for every individual feature leading to extremely robust inputs. Note, it is a very slow algorithm, with the number of models being trained equaling 30 times the Number of Features. 
 
 FFOOD addresses whether confounders or outliers drive the prediction error. This method is primarily meant for cross-sectional datasets. All functions only work with machine readible data; do no pass it NaN or Infinite values and make sure that all category variables are one-hot encoded.
 
-The method is at first an analysis of the most overpredicted instances (hence most underpredicted too). The method starts by dividing the dataset in two random subsets. The model is trained on subset one to predict subset two, after which it is trained on subset two to predict subset one. The feature to be predicted is one plus log transformed to ensure there is no negative predictions.
+The method is at first an analysis of the most overpredicted instances (hence most underpredicted too) for each feature. The method starts by dividing the dataset in two random subsets. The model is trained on subset one to predict subset two, after which it is trained on subset two to predict subset one. The feature to be predicted is one plus log transformed to ensure there is no negative predictions.
 
 The percentage difference between the predicted and the actual target is used to determine the most overpredicted and under predicted instances. This process is repeated N number of times different test-train samples to ensure that a stable overpredicted and underpredicted percentage have been obtained.
 
@@ -31,6 +31,7 @@ The next step is to find the features most associated with the overprediction. A
 - Going back to the unstructured data, is there any additional features (confounders) that you could have missed?
 - If no additional attributes or characteristics coul help to explain the overprediction, is the instance a data entry mistake or an outlier?
 - Have a look at the unsupervised feature characteristics like predictability, informativeness, underpredictor, overpredictor and, outlier-driver and repeat the first two steps.
+- Run the model again and repeat the steps until no prediction outliers are observed; this requires some judgement.
 
 The best way to dealt with this issue is with an example. This example uses an Airbnb dataset. 
 
@@ -80,6 +81,7 @@ Welcome to Airbnb Analysis Corp.! Your task is to set the competitive ****daily 
 <br />
 
 **Raw Data**
+The algorithm applied to this dataset runs about 30 minutes. I will include some efficiency improvements in the future.
 
 ```python
 raw_data = pd.read_csv("https://github.com/firmai/random-assets/blob/master/listings.csv?raw=true")
@@ -175,6 +177,77 @@ The figures to this table rely on the entire data set and are not specific to an
 | security_deposit           | 116134.893           | Entire home/apt            | 82007.025             | bathrooms_per_person  | 976.245801          | host_is_superhost          | 922.621391           | minimum_nights         | 842.2                |
 | past_and_future_popularity | 43272.0684           | cleaning_fee               | 64619.9799            | bedrooms_per_person   | 500.608543          | bathrooms_per_person       | 904.433052           | price                  | 644.6                |
 | cleaning_fee               | 30418.8392           | bathrooms                  | 55519.1308            | Hotel room            | 338.967136          | bathrooms                  | 824.314968           | beds                   | 475.6                |
+
+
+</br >
+
+#### FFOOD Analysis Starts
+
+While performing the analysis remember that we want to establish a fair value for our clients, and for that reason don't want to include data on units or hosts that are not acting within the spirit of Airbnb. 
+
+- Start with the first feature:
+- (1) Confounders that you could have missed?
+    - (a) Overprediction
+    - (b) Underprediction
+- (2) Data entry mistakes and outliers?
+- (3) Any strange unsupervised feature characteristics?
+- (4) Go to the next feature and follow (1) - (3)
+- (5) Run the model again and follow (1) - (4) untill all outliers are removed. 
+
+
+#### Price
+
+(1) Confounders that you could have missed?
+
+
+(a) Overprediction:
+
+__18039__ 
+https://www.airbnb.com/rooms/21743681
+
+This instance shows immediate red flags, there is no dates available into the future and the price is really low. It is like offering a product at a very low price but not having stock. These type of locations should not be included in the data set and should be removed. I would remove all homes at a hard limit of say $15 and less with no availbility for the next two months and less than two reviews.
+
+__32657__
+https://www.airbnb.com/rooms/21884828
+
+This host realised her error and she has respectively adjusted her price from [$20](https://github.com/firmai/FFOOD/blob/master/raw/Over.csv) to $50 within two months. But even still, $50 is rediculously low for a prediction of (20 x 600% = $120). She has a cleaning fee of $70, but the model should have picked this up. The cleaning fee is a FLO (an overpredicting feature) so we might want to give it some attention in the future. I would create one additional feature which is the price + cleaning fee, but other than that, this is just a good deal. This could set the baseline for identifying a deal vs an error. Overprrediction of 50/20 ~ we will conservatively say 3, should be removed.
+
+__18416__
+https://www.airbnb.com/rooms/21743681
+
+This again just looks like an amazing deal. Although the reviewer are fairly highly rated at 3.75, there seems to be an issue with cancellations as per the reviews. This might be a contributing factor to him having to offer a low price to attract clients as this is a great cause of uncertainty to holiday plans. To fix the miss prediction issue, I would count the number of reviews with 'cancel' occuring in the text.
+
+__32731__
+https://www.airbnb.com/rooms/33861409
+
+This price changed from $15 to almost $150, as a result, it is likely to be a mistake. Howeverm this change of price is not somethign you would have known at the time of creating the model. The 3 times overvaluation rule established in __32657__ would take care of this mistake of 4.3 times overvaluation. 
+
+__27078__
+https://www.airbnb.com/rooms/33912597
+
+Again a mistake, was listed as $20, now listed as $200. The 3 times overvaluation rule established in __32657__ would take care of this mistake
+
+#### Number of Reviews
+
+(1) Confounders that you could have missed?
+
+(a) Overprediction (
+
+__15082__ 
+https://www.airbnb.com/rooms/21743681
+
+This instance shows immediate red flags, there is no dates available into the future and the price is really low. It is like offering a product at a very low price but not having stock. These type of locations should not be included in the data set and should be removed. I would remove all homes at a hard limit of say $15 and less with no availbility for the next two months and less than two reviews.
+
+
+
+
+
+
+
+
+
+
+
 
 
 
