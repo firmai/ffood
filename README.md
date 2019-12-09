@@ -60,6 +60,7 @@ Welcome to Airbnb Analysis Corp.! Your task is to set the competitive ****daily 
     dict_client["host_since"] = parser.parse("01-08-2010")
 ```
 <br />
+
 **Raw Data**
 
     raw_data = pd.read_csv("https://github.com/firmai/random-assets/blob/master/listings.csv?raw=true")
@@ -71,12 +72,15 @@ Welcome to Airbnb Analysis Corp.! Your task is to set the competitive ****daily 
     clean_data = your_cleaning_operations(raw_data)
 
 
-#### Start Here
+### Start Here
+
+<br />
 
 **FFOOD Tables**
 
-
     outliers, features = tables(clean_data)
+
+<br />
 
 **Outliers**
 
@@ -92,7 +96,7 @@ This operation finds the prediction outlier for all feature. The first is an anl
 | 32731                | 431                    | 27492                 | -93                     | price             | bedrooms             | 122461.56      | cleaning_fee                                 | 191.342111 | accommodates                                  | 445.722047 |
 | 27078                | 351                    | 30957                 | -93                     | price             | bathrooms_per_person | 96394.2702     | beds                                         | 105.192666 | Shared room                                   | 394.079955 |
 
-&nbsp
+<br />
 
 The next is the same table but for the average reviewer rating. All feature are are contained within the *outliers* data frame.
 
@@ -110,7 +114,7 @@ The next is the same table but for the average reviewer rating. All feature are 
 
 
 
-From here forward, I will focus on the price feature as target. 
+*From here forward, I will focus on the price feature as target. *
 
 Raw Data
 
@@ -123,12 +127,13 @@ Raw Data
 | https://www.airbnb.com/rooms/33861409 | https://www.airbnb.com/rooms/32384612 |
 | https://www.airbnb.com/rooms/33912597 | https://www.airbnb.com/rooms/34231022 |
 
-There is a lot of other raw data that can be found here for the overpredicted and underpredicted instances. 
+There is a lot of other raw data that can be found here for the [overpredicted](https://github.com/firmai/FFOOD/blob/master/raw/Over.csv) and [underpredicted](https://github.com/firmai/FFOOD/blob/master/raw/Under.csv) instances. 
 
-This relies on the entire data set and not a specific feature.
+</br >
 
-Features
+**Features**
 
+The figures to this table rely on the entire data set and are not specific to any one feature.
 
 | predictability Feature     | predictability Value | informativeness Feature    | informativeness Value | overpredictor Feature | overpredictor Value | underpredictor Feature     | underpredictor Value | outlier_driver Feature | outlier_driver Value |
 | -------------------------- | -------------------- | -------------------------- | --------------------- | --------------------- | ------------------- | -------------------------- | -------------------- | ---------------------- | -------------------- |
