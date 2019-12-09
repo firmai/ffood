@@ -59,10 +59,12 @@ Welcome to Airbnb Analysis Corp.! Your task is to set the competitive ****daily 
     dict_client["cancellation_policy"] = "strict_14_with_grace_period"
     dict_client["host_since"] = parser.parse("01-08-2010")
 ```
-
+<br />
 **Raw Data**
 
     raw_data = pd.read_csv("https://github.com/firmai/random-assets/blob/master/listings.csv?raw=true")
+
+<br />
 
 **Cleaned Data**
 
