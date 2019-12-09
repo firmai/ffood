@@ -60,24 +60,25 @@ Welcome to Airbnb Analysis Corp.! Your task is to set the competitive ****daily 
     dict_client["host_since"] = parser.parse("01-08-2010")
 ```
 
-Raw Data
+**Raw Data**
 
     raw_data = pd.read_csv("https://github.com/firmai/random-assets/blob/master/listings.csv?raw=true")
 
-Cleaned Data
+**Cleaned Data**
 
     clean_data = your_cleaning_operations(raw_data)
 
-Start Here
 
-FFOOD Tables
+#### Start Here
+
+**FFOOD Tables**
 
 
     outliers, features = tables(clean_data)
 
-Outliers
+**Outliers**
 
-For Price
+This operation finds the prediction outlier for all feature. The first is an anlysis of 'price' as the target. 
 
 
     outliers[outliers["Predicted Feature"]=="price"]
@@ -89,8 +90,9 @@ For Price
 | 32731                | 431                    | 27492                 | -93                     | price             | bedrooms             | 122461.56      | cleaning_fee                                 | 191.342111 | accommodates                                  | 445.722047 |
 | 27078                | 351                    | 30957                 | -93                     | price             | bathrooms_per_person | 96394.2702     | beds                                         | 105.192666 | Shared room                                   | 394.079955 |
 
+&nbsp
 
-For Rating (And for all the other features similar data frames exists)
+The next is the same table but for the average reviewer rating. All feature are are contained within the *outliers* data frame.
 
 
     outliers[outliers["Predicted Feature"]=="review_scores_rating"]
