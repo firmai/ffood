@@ -7,6 +7,8 @@ The package is nice and simple and boils down to one command is nice and simple
 outliers, features = tables(clean_data)
 ```
 
+#### Description
+
 FFOOD is a unique method to audit potential model inputs. It is designed to help you identify whether you might need additional variables and whether you have mistakes or outliers in your datasets.
 
 FFOOD addresses whether confounders or outliers drive the prediction error. This method is primarily meant for cross-sectional datasets. All functions only work with machine readible data; do no pass it NaN or Infinite values and make sure that all category variables are one-hot encoded.
@@ -44,7 +46,7 @@ Welcome to Airbnb Analysis Corp.! Your task is to set the competitive ****daily 
 1. The cancelation policy is ****strict with a 14 days grace period****.
 1. The host requires a security deposit of ****$1,500****
 
-```
+```python
     from dateutil import parser
     dict_client = {}
     dict_client["city"] = "Bondi Beach"
@@ -71,13 +73,17 @@ Welcome to Airbnb Analysis Corp.! Your task is to set the competitive ****daily 
 
 **Raw Data**
 
-    raw_data = pd.read_csv("https://github.com/firmai/random-assets/blob/master/listings.csv?raw=true")
+```python
+raw_data = pd.read_csv("https://github.com/firmai/random-assets/blob/master/listings.csv?raw=true")
+```
 
 <br />
 
 **Cleaned Data**
 
-    clean_data = your_cleaning_operations(raw_data)
+```python
+clean_data = your_cleaning_operations(raw_data)
+```
 
 <br />
 
@@ -87,7 +93,9 @@ Welcome to Airbnb Analysis Corp.! Your task is to set the competitive ****daily 
 
 **FFOOD Tables**
 
-    outliers, features = tables(clean_data)
+```python
+outliers, features = tables(clean_data)
+````
 
 <br />
 
@@ -95,8 +103,10 @@ Welcome to Airbnb Analysis Corp.! Your task is to set the competitive ****daily 
 
 This operation finds the prediction outlier for all feature. The first is an anlysis of 'price' as the target. 
 
+```python
+outliers[outliers["Predicted Feature"]=="price"]
+```
 
-    outliers[outliers["Predicted Feature"]=="price"]
 | Overprediction Index | Overpredict Percentage | Underprediction Index | Underpredict Percentage | Predicted Feature | Top Feature          | ABS SHAP Value | Larger Feature Leads to Overprediction (FLO) | FLO Value  | Larger Feature Leads to Underprediction (FLU) | FLU Value  |
 | -------------------- | ---------------------- | --------------------- | ----------------------- | ----------------- | -------------------- | -------------- | -------------------------------------------- | ---------- | --------------------------------------------- | ---------- |
 | 18039                | 900                    | 33057                 | -96                     | price             | Entire home/apt      | 204941.78      | Private room                                 | 5678.24536 | bathrooms                                     | 2219.96877 |
@@ -109,9 +119,9 @@ This operation finds the prediction outlier for all feature. The first is an anl
 
 The next is the same table but for the average reviewer rating. All feature are are contained within the *outliers* data frame.
 
-
-    outliers[outliers["Predicted Feature"]=="review_scores_rating"]
-
+```python
+outliers[outliers["Predicted Feature"]=="review_scores_rating"]
+```
 
 | Overprediction Index | Overpredict Percentage | Underprediction Index | Underpredict Percentage | Predicted Feature    | Top Feature                | ABS SHAP Value | Larger Feature Leads to Overprediction (FLO) | FLO Value  | Larger Feature Leads to Underprediction (FLU) | FLU Value  |
 | -------------------- | ---------------------- | --------------------- | ----------------------- | -------------------- | -------------------------- | -------------- | -------------------------------------------- | ---------- | --------------------------------------------- | ---------- |
