@@ -1,10 +1,16 @@
 # FFOOD
 **Framework for Feature and Observation Outlier Detection (FFOOD)**
 
+```
+pip install ffood
+```
+
 The package is nice and simple and boils down to one command.
 
 ```python
-outliers, features = tables(clean_data)
+from ffood import tables as tb
+
+outliers, features = tb(clean_data)
 ```
 
 #### Description
