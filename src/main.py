@@ -22,39 +22,36 @@ def outlier_observation(X_pr, target, itters):
       'num_threads':16}
     n_estimators = 100
 
-    try:
+    model = lgb.train(params, d_train, 100, verbose_eval=1)
 
-      model = lgb.train(params, d_train, 100, verbose_eval=1)
+    preds = model.predict(second)
 
-      preds = model.predict(second)
-  
-      #predictions = np.clip(preds, df[target].min(), df[target].max())
+    #predictions = np.clip(preds, df[target].min(), df[target].max())
 
-      second[target+ "_prediction"] = np.expm1(preds) # predictions
-      second["real_"+target] = second[target]
-      second["over_prediction_percentage"] = (second[target+ "_prediction"]-second["real_"+target])/second["real_"+target]
+    second[target+ "_prediction"] = np.expm1(preds) # predictions
+    second["real_"+target] = second[target]
+    second["over_prediction_percentage"] = (second[target+ "_prediction"]-second["real_"+target])/second["real_"+target]
 
 
-      model = lgb.train(params, d_valid, 100, verbose_eval=1)
+    model = lgb.train(params, d_valid, 100, verbose_eval=1)
 
-      preds = model.predict(first)
+    preds = model.predict(first)
 
-      #predictions = np.clip(preds, df[target].min(), df[target].max())
+    #predictions = np.clip(preds, df[target].min(), df[target].max())
 
-      first[target+ "_prediction"] = np.expm1(preds) # predictions
-      first["real_"+target] = first[target]
-      first["over_prediction_percentage"] = (first[target+ "_prediction"]-first["real_"+target])/first["real_"+target]
-      
+    first[target+ "_prediction"] = np.expm1(preds) # predictions
+    first["real_"+target] = first[target]
+    first["over_prediction_percentage"] = (first[target+ "_prediction"]-first["real_"+target])/first["real_"+target]
+    
 
 
-      final = pd.concat((first, second), axis=0)
+    final = pd.concat((first, second), axis=0)
 
-      if da==1:
-        framed = final.sort_index()
-      else:
-        framed["over_prediction_percentage"] = framed["over_prediction_percentage"].sort_index() + final["over_prediction_percentage"].sort_index()
-    except:
-      print("First Exception")
+    if da==1:
+      framed = final.sort_index()
+    else:
+      framed["over_prediction_percentage"] = framed["over_prediction_percentage"].sort_index() + final["over_prediction_percentage"].sort_index()
+
 
   framed = framed.sort_values("over_prediction_percentage",ascending=False)
 
@@ -108,12 +105,8 @@ def feature_calcs(second, target, original):
       params["feature_fraction_seed"] = seeds
       
       params["random_seed"] = seeds + 1
-      try:
-        model = lgb.train(params, d_second, verbose_eval=1000)
-      except:
-        print("Excepted")
-        print(second.head())
-        continue
+      model = lgb.train(params, d_second, verbose_eval=1000)
+
 
       shap_values = shap.TreeExplainer(model).shap_values(second.drop(cols_drop, axis=1))
 
@@ -174,7 +167,11 @@ def outliers(X_pr):
     print("Start " + target + " ("+str(ka)+"/"+str(len(targets))+")")
 
     together, framed, ind = outlier_observation(X_pr, target, 5)
-    frame = feature_frame(framed,target)
+    try:
+      frame = feature_frame(framed,target)
+    except:
+      print("Bad Feature")
+      continue
     unit = pd.merge(together, frame,left_index=True, right_index=True,how="left")
     unit.insert(loc=4, column="Predicted Feature", value=target)
 
