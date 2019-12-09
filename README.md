@@ -36,7 +36,7 @@ Welcome to Airbnb Analysis Corp.! Your task is to set the competitive ****daily 
 1. The cancelation policy is ****strict with a 14 days grace period****.
 1. The host requires a security deposit of ****$1,500****
 
-
+```
     from dateutil import parser
     dict_client = {}
     dict_client["city"] = "Bondi Beach"
@@ -58,7 +58,7 @@ Welcome to Airbnb Analysis Corp.! Your task is to set the competitive ****daily 
     dict_client["host_is_superhost"] = 1
     dict_client["cancellation_policy"] = "strict_14_with_grace_period"
     dict_client["host_since"] = parser.parse("01-08-2010")
-
+```
 
 Raw Data
 
