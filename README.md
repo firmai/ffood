@@ -17,7 +17,7 @@ outliers, features = tb(clean_data)
 pip install ffood
 ```
 
-FFOOD is a unique method to audit potential model inputs. It is designed to help you identify whether you might need additional variables and whether you have mistakes or outliers in your datasets.
+FFOOD is a unique method to audit potential model inputs. It is designed to help you identify whether you might need additional variables and whether you have mistakes or outliers in your datasets. Note, it is a very slow algorithm, with the number of models being trained equaling 30 times the Number of Features. 
 
 FFOOD addresses whether confounders or outliers drive the prediction error. This method is primarily meant for cross-sectional datasets. All functions only work with machine readible data; do no pass it NaN or Infinite values and make sure that all category variables are one-hot encoded.
 
