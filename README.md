@@ -1,9 +1,7 @@
 # FFOOD
 **Framework for Feature and Observation Outlier Detection (FFOOD)**
 
-```
-pip install ffood
-```
+
 
 The package is nice and simple and boils down to one command.
 
@@ -14,6 +12,10 @@ outliers, features = tb(clean_data)
 ```
 
 #### Description
+
+```
+pip install ffood
+```
 
 FFOOD is a unique method to audit potential model inputs. It is designed to help you identify whether you might need additional variables and whether you have mistakes or outliers in your datasets.
 
