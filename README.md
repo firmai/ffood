@@ -1,7 +1,7 @@
 # FFOOD
 **Framework for Feature and Observation Outlier Detection (FFOOD)**
 
-The package is nice and simple and boils down to one command is nice and simple
+The package is nice and simple and boils down to one command.
 
 ```python
 outliers, features = tables(clean_data)
