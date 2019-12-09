@@ -181,7 +181,7 @@ The figures to this table rely on the entire data set and are not specific to an
 
 </br >
 
-#### FFOOD Analysis Starts
+## FFOOD Analysis Starts
 
 While performing the analysis remember that we want to establish a fair value for our clients, and for that reason don't want to include data on units or hosts that are not acting within the spirit of Airbnb. 
 
@@ -195,13 +195,13 @@ While performing the analysis remember that we want to establish a fair value fo
 - (5) Run the model again and follow (1) - (4) untill all outliers are removed. 
 
 
-#### Price
+### Price
 
-(1) Confounders that you could have missed?
+#### (1) Confounders that you could have missed?
 
 * See the archive links if the original links stop working.
 
-(a) Overprediction:
+##### (a) Overprediction:
 
 [18039](https://www.airbnb.com/rooms/21743681) ([Archive](http://archive.today/BR1ss))
 
@@ -223,7 +223,7 @@ This price changed from $15 to almost $150, as a result, it is likely to be a mi
 
 Again a mistake, was listed as $20, now listed as $200. The 3 times overvaluation rule established in __32657__ would take care of this mistake
 
-(a) Underprediction:
+##### (a) Underprediction:
 
 [33057](https://www.airbnb.com/rooms/26932284)
 
