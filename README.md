@@ -1,6 +1,12 @@
 # FFOOD
 **Framework for Feature and Observation Outlier Detection (FFOOD)**
 
+The package is nice and simple and boils down to one command is nice and simple
+
+```python
+outliers, features = tables(clean_data)
+```
+
 FFOOD is a unique method to audit potential model inputs. It is designed to help you identify whether you might need additional variables and whether you have mistakes or outliers in your datasets.
 
 FFOOD addresses whether confounders or outliers drive the prediction error. This method is primarily meant for cross-sectional datasets. All functions only work with machine readible data; do no pass it NaN or Infinite values and make sure that all category variables are one-hot encoded.
@@ -17,6 +23,8 @@ The next step is to find the features most associated with the overprediction. A
 - Have a look at the unsupervised feature characteristics like predictability, informativeness, underpredictor, overpredictor and, outlier-driver and repeat the first two steps.
 
 The best way to dealt with this issue is with an example. This example uses an Airbnb dataset. 
+
+# Example
 
 #### Airbnb Daily Fair Valuation
 
