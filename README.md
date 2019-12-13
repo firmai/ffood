@@ -1,7 +1,7 @@
 # FFOOD
 **Framework for Feature and Observation Outlier Detection (FFOOD)**
 
-
+## Note this package doesn't work yet. 
 
 The package is nice and simple and boils down to one command.
 
