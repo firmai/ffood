@@ -3,6 +3,8 @@
 
 ## Note this package doesn't work yet. 
 
+Feature Outlier Detection and Explanation using Gradient Boosting Prediction Residuals
+
 The package is nice and simple and boils down to one command.
 
 ```python
